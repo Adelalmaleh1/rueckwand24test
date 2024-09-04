@@ -17,6 +17,37 @@ const ImageWithCircle = (props) => {
     onDrag: PropTypes.func.isRequired,
   };
 
+  const circleRadius = 10;
+
+  const isOverlapping = (circle1, circle2) => {
+    const widthX = circle1.x - circle2.x;
+    const heightY = circle1.y - circle2.y;
+    const distance = Math.sqrt(widthX * widthX + heightY * heightY);
+    return distance < 2 * circleRadius;
+  };
+
+  const adjustPosition = (index, x, y) => {
+    let newWidthX = x;
+    let newHeightY = y;
+
+    circles.forEach((otherCircle, idx) => {
+      if (
+        idx !== index &&
+        isOverlapping({ x: newWidthX, y: newHeightY }, otherCircle)
+      ) {
+        newWidthX += circleRadius;
+        newHeightY += circleRadius;
+      }
+    });
+
+    return { newWidthX, newHeightY };
+  };
+
+  const handleDrag = (index, x, y) => {
+    const { newWidthX, newHeightY } = adjustPosition(index, x, y);
+    onDrag(index, newWidthX, newHeightY);
+  };
+
   return (
     <div className="container">
       <div className="image-container">
@@ -27,7 +58,7 @@ const ImageWithCircle = (props) => {
             key={index}
             position={{ x: circle.x, y: circle.y }}
             bounds="parent"
-            onDrag={(e, data) => onDrag(index, data.x, data.y)}
+            onDrag={(e, data) => handleDrag(index, data.x, data.y)}
           >
             <div className="circle"></div>
           </Draggable>
