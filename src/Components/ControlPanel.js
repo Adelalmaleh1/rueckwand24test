@@ -3,38 +3,51 @@ import "../Styling/ControlPanel.css";
 import PropTypes from "prop-types";
 
 const ControlPanel = (props) => {
-  const { width, height, setWidth, setHeight } = props;
+  const { circles, setCirclePosition, addCircle } = props;
 
   ControlPanel.propTypes = {
-    width: PropTypes.number.isRequired,
-    height: PropTypes.number.isRequired,
-    setWidth: PropTypes.func.isRequired,
-    setHeight: PropTypes.func.isRequired,
+    circles: PropTypes.arrayOf(
+      PropTypes.shape({
+        x: PropTypes.number.isRequired,
+        y: PropTypes.number.isRequired,
+      })
+    ).isRequired,
+    setCirclePosition: PropTypes.func.isRequired,
+    addCircle: PropTypes.func.isRequired,
   };
 
   return (
     <div className="control-panel-container">
       <div className="control-panel">
-        <div className="circle-distance">
-          <label>Distance for Circle</label>
-          <div className="input-row">
-            <input
-              type="number"
-              value={width}
-              onChange={(e) => setWidth(Number(e.target.value))}
-              placeholder="x"
-              className="input-field"
-            />
-            <input
-              type="number"
-              value={height}
-              onChange={(e) => setHeight(Number(e.target.value))}
-              placeholder="y"
-              className="input-field"
-            />
+        {circles.map((circle, index) => (
+          <div key={index} className="circle-distance">
+            <label>Distance for Circle {index + 1}</label>
+            <div className="input-row">
+              <input
+                type="number"
+                value={circle.x}
+                onChange={(e) =>
+                  setCirclePosition(index, "x", Number(e.target.value))
+                }
+                placeholder="x"
+                className="input-field"
+              />
+              <input
+                type="number"
+                value={circle.y}
+                onChange={(e) =>
+                  setCirclePosition(index, "y", Number(e.target.value))
+                }
+                placeholder="y"
+                className="input-field"
+              />
+            </div>
           </div>
-        </div>
+        ))}
 
+        <button onClick={addCircle} className="add-circle-button">
+          Add Circle
+        </button>
         <div className="material-selection">
           <label>Material Selection</label>
           <div className="material-list">

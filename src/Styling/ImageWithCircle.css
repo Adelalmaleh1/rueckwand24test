@@ -11,15 +11,16 @@
 .container {
   background-color: var(--background-main);
   padding: var(--container-padding);
+  position: relative;
 }
 
 .image-container {
+  align-items: center;
+  display: flex;
+  height: var(--image-container-height);
+  justify-content: center;
   position: relative;
   width: var(--image-container-width);
-  height: var(--image-container-height);
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .image {
@@ -29,12 +30,13 @@
 }
 
 .circle {
-  position: absolute;
-  width: var(--circle-size-large);
-  height: var(--circle-size-large);
   background-color: var(--circle-color);
   border-radius: 50%;
+  height: var(--circle-size-large);
+  position: absolute;
+  position: absolute;
   transform: translate(-50%, -50%);
+  width: var(--circle-size-large);
 }
 
 @media screen and (max-width: 768px) {

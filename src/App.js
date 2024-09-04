@@ -4,17 +4,32 @@ import ControlPanel from "./Components/ControlPanel";
 import "./Styling/App.css";
 
 const App = () => {
-  const [width, setWidth] = useState(50);
-  const [height, setHeight] = useState(50);
+  const [circles, setCircles] = useState([{ x: 0, y: 0 }]);
+
+  const setCirclePosition = (index, axis, value) => {
+    setCircles((prevCircles) =>
+      prevCircles.map((circle, i) =>
+        i === index ? { ...circle, [axis]: value } : circle
+      )
+    );
+  };
+
+  const addCircle = () => {
+    setCircles((prevCircles) => [...prevCircles, { x: 0, y: 0 }]);
+  };
+
+  const onDrag = (index, x, y) => {
+    setCirclePosition(index, "x", x);
+    setCirclePosition(index, "y", y);
+  };
 
   return (
     <div className="app">
-      <ImageWithCircle width={width} setHeight={setHeight} />
+      <ImageWithCircle circles={circles} onDrag={onDrag} />
       <ControlPanel
-        width={width}
-        height={height}
-        setWidth={setWidth}
-        setHeight={setHeight}
+        circles={circles}
+        setCirclePosition={setCirclePosition}
+        addCircle={addCircle}
       />
     </div>
   );
