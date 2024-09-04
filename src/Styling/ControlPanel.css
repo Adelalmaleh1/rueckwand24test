@@ -1,0 +1,54 @@
+:root {
+  --background-main: #f0f0f0;
+  --background-panel: #ffffff;
+  --border-color: #ccc;
+  --shadow-default: rgba(0, 0, 0, 0.1);
+  --container-padding: 20px;
+  --input-padding: 10px;
+  --input-width: 60px;
+  --input-border-radius: 5px;
+  --gap-default: 10px;
+  --gap-large: 20px;
+  --label-margin-bottom: 10px;
+  --font-bold: bold;
+  --font-size-default: 14px;
+}
+
+.container {
+  background-color: var(--background-main);
+}
+
+.control-panel-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: var(--container-padding);
+  box-shadow: 0 4px 6px var(--shadow-default);
+}
+
+.control-panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-large);
+}
+
+.circle-distance,
+.material-selection,
+.material-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-default);
+}
+
+.input-row {
+  display: flex;
+  gap: var(--gap-default);
+}
+
+.input-field {
+  padding: var(--input-padding);
+  border: 1px solid var(--border-color);
+  border-radius: var(--input-border-radius);
+  width: var(--input-width);
+  font-size: var(--font-size-default);
+}

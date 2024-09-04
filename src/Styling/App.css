@@ -1,0 +1,55 @@
+:root {
+  --app-padding: 20px;
+  --app-padding-small: 10px;
+  --image-margin-right: 40px;
+  --image-margin-bottom: 20px;
+  --control-input-margin: 5px 0;
+  --control-input-padding: 5px;
+  --control-input-padding-small: 8px;
+  --control-input-width: 60px;
+  --control-input-width-full: 100%;
+  --control-label-margin-bottom: 10px;
+}
+
+.app {
+  display: flex;
+  padding: var(--app-padding);
+  flex-direction: row;
+}
+
+.image-container {
+  margin-right: var(--image-margin-right);
+}
+
+.control-panel {
+  display: flex;
+  flex-direction: column;
+}
+
+.control-panel input {
+  margin: var(--control-input-margin);
+  padding: var(--control-input-padding);
+  width: var(--control-input-width);
+}
+
+.control-panel label {
+  margin-bottom: var(--control-label-margin-bottom);
+  font-weight: bold;
+}
+
+@media screen and (max-width: 768px) {
+  .app {
+    flex-direction: column;
+    padding: var(--app-padding-small);
+  }
+
+  .image-container {
+    margin-right: 0;
+    margin-bottom: var(--image-margin-bottom);
+  }
+
+  .control-panel input {
+    width: var(--control-input-width-full);
+    padding: var(--control-input-padding-small);
+  }
+}

@@ -1,0 +1,50 @@
+:root {
+  --background-main: #f0f0f0;
+  --circle-color: red;
+  --container-padding: 20px;
+  --image-container-width: 500px;
+  --image-container-height: 200px;
+  --circle-size-large: 20px;
+  --circle-size-small: 15px;
+}
+
+.container {
+  background-color: var(--background-main);
+  padding: var(--container-padding);
+}
+
+.image-container {
+  position: relative;
+  width: var(--image-container-width);
+  height: var(--image-container-height);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.circle {
+  position: absolute;
+  width: var(--circle-size-large);
+  height: var(--circle-size-large);
+  background-color: var(--circle-color);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@media screen and (max-width: 768px) {
+  .circle-overlay-image-container {
+    width: 100%;
+    height: auto;
+  }
+
+  .circle-overlay-circle {
+    width: var(--circle-size-small);
+    height: var(--circle-size-small);
+  }
+}

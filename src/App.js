@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import ImageWithCircle from "./Components/ImageWithCircle";
+import ControlPanel from "./Components/ControlPanel";
+import "./Styling/App.css";
 
-function App() {
+const App = () => {
+  const [width, setWidth] = useState(50);
+  const [height, setHeight] = useState(50);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <ImageWithCircle width={width} setHeight={setHeight} />
+      <ControlPanel
+        width={width}
+        height={height}
+        setWidth={setWidth}
+        setHeight={setHeight}
+      />
     </div>
   );
-}
+};
 
 export default App;
