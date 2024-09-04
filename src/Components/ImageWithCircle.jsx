@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import "../Styling/ImageWithCircle.css";
 import wallpaper from "../Images/wallpaper.webp";
 import PropTypes from "prop-types";
@@ -17,24 +17,20 @@ const ImageWithCircle = (props) => {
     onDrag: PropTypes.func.isRequired,
   };
 
-  const circleRefs = useRef(circles.map(() => React.createRef()));
-
   return (
     <div className="container">
       <div className="image-container">
         <img src={wallpaper} alt="Background" className="image" />
 
         {circles.map((circle, index) => (
-          <React.Fragment key={index}>
-            <Draggable
-              nodeRef={circleRefs.current[index]}
-              position={{ x: circle.x, y: circle.y }}
-              bounds="parent"
-              onDrag={(e, data) => onDrag(index, data.x, data.y)}
-            >
-              <div ref={circleRefs.current[index]} className="circle"></div>
-            </Draggable>
-          </React.Fragment>
+          <Draggable
+            key={index}
+            position={{ x: circle.x, y: circle.y }}
+            bounds="parent"
+            onDrag={(e, data) => onDrag(index, data.x, data.y)}
+          >
+            <div className="circle"></div>
+          </Draggable>
         ))}
       </div>
     </div>
